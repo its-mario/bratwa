@@ -24,6 +24,11 @@ This is a mesanging app built using [flutter](https://flutter.dev/) and [getStre
 
 *here might be descritption of app and how it works but unffortunetly the app right now is just a garbadge of code that somehow work* 😑
 
- <img title="" src="assets/logIn.jpg" alt="app" width="212"><img title="" src="assets/singUp.jpg" alt="a" width="212">
+ 
 
-<img title="" src="assets/menu1.jpg" alt="a" width="224" data-align="inline"><img title="" src="assets/menu2.jpg" alt="a" width="224">
+
+
+| ![a](assets/logIn.jpg) | ![a](assets/singUp.jpg) |
+| ---------------------- | ----------------------- |
+| ![a](assets/menu1.jpg) | ![a](assets/menu2.jpg)  |
+| ![a](assets/chat1.jpg) | ![a](assets/chat2.jpg)  |
