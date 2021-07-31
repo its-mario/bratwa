@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:md_messenger/screens/loading_component.dart';
 import 'package:md_messenger/screens/logInPage/components/logInButtons.dart';
 import 'package:md_messenger/services/provider.dart';
 
@@ -113,20 +114,25 @@ class _LogInFormState extends State<LogInForm> {
                         //TO DO: eu nustiu cei cu parasha asta de firebase da ea returneaze erroare!
                         // String result;
                         print("<LogInScreen>: singIn button was pressed");
-                        if (!isSingUp){
-                          await context.read<AuthModel>().logIn(
-                            id: idController.text.trim(),
-                            password: passwordController.text.trim(),
-                          );
-                        } else {
-                          await context.read<AuthModel>().singUp(
-                            id: idController.text.trim(),
-                            password: passwordController.text.trim(),
-                            name: nameController.text.trim(),
-                            email: idController.text.trim(),
-                          );
-                        }
-                        
+                        showOverlay(
+                          context,
+                          () async {
+                            if (!isSingUp) {
+                              await context.read<AuthModel>().logIn(
+                                    id: idController.text.trim(),
+                                    password: passwordController.text.trim(),
+                                  );
+                            } else {
+                              await context.read<AuthModel>().singUp(
+                                    id: idController.text.trim(),
+                                    password: passwordController.text.trim(),
+                                    name: nameController.text.trim(),
+                                    email: idController.text.trim(),
+                                  );
+                            }
+                          },
+                        );
+
                         // try {
                         //   await context
                         //       .read<AuthModel>()

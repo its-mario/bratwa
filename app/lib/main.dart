@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:md_messenger/constants.dart';
 import 'package:md_messenger/models/securestorage.dart';
+import 'package:md_messenger/screens/loading_component.dart';
 import 'package:md_messenger/screens/logInPage/login_screen.dart';
+import 'package:md_messenger/screens/mainPage/mainScreen.dart';
 import 'package:md_messenger/screens/mainPage/mainScreendesign.dart';
 import 'package:md_messenger/services/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-
-import 'screens/loading_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,18 +42,27 @@ class MyApp extends StatelessWidget {
       ),
     );
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: defaultThemeData,
-      title: "BRATWAVA",
-      builder: (context, widget) => StreamChat(
-        streamChatThemeData: themeData,
-        client: client,
-        child: widget,
-      ),
-      home: ChangeNotifierProvider(
-        create: (context) => AuthModel(this.client),
-        child: ConnectionWrapper(),
+    return ChangeNotifierProvider(
+      create: (context) => AuthModel(this.client),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: defaultThemeData,
+        title: "BRATWAVA",
+        builder: (context, widget) => StreamChat(
+          streamChatThemeData: themeData,
+          client: client,
+          child: widget,
+        ),
+        initialRoute: "/",
+        routes: {
+          '/': (ctx) => ChangeNotifierProvider(
+                create: (context) => AuthModel(this.client),
+                child: ConnectionWrapper(),
+              ),
+          '/logIn': (ctx) => LogInPage(),
+          '/main': (ctx) => MainPage(),
+          // '/intro': (ctx) => Introduction(),
+        },
       ),
     );
   }

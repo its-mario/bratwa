@@ -47,7 +47,8 @@ class AuthModel extends ChangeNotifier {
       return key.error;
     } else {
       print("id: ${key.id}\ntoken:${key.token}");
-      _client.connectUser(user, key.token);
+      Event response = await _client.connectUser(user, key.token);
+      print(" User Logged in : " + response.online.toString());
       final secureSave = SecureSave();
       secureSave.saveToken(key);
     }
